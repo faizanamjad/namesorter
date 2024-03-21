@@ -1,41 +1,79 @@
-# The Goal: Name Sorter
 
-An application that takes an argument of a path to a file containing a list of names and sorts those names alphabetically, first by last name, then by given names.
 
-## Instructions
-1. Names must have at least one given name and may have up to three given names.
-1. Name must have at least one last name.
-1. Outputs the sorted list to the console and to a file in the working directory
+# Name Sorter Application
 
-## Project Structure
+The Name Sorter is a .NET console application designed to alphabetically sort a list of names by last name, then by given names. This guide provides concise instructions for setup, operation, and testing.
 
-1. **Console Application**: The Console Application is meticulously crafted with well-structured classes and comprehensive logic. Developed in alignment with best practices for enhanced functionality and user experience
-   
-2. **Unit Test Project**: A project that contains unit tests for testing the functionality and behaviour of the console application.
+## Features
 
-3.**TestDataFiles**: This folder has a few unsorted files to test different
+- **Sorting**: Alphabetically by last name, then given names.
+- **SOLID Principles**: Ensures a robust application architecture.
+- **Output**: To both the console and a file in the working directory.
 
-## Getting Started
+## Quick Start
 
 ### Prerequisites
 
-- .NET 8 SDK
-- Visual Studio 2022
+- **.NET 8 SDK**: [Download here](https://dotnet.microsoft.com/en-us/download)
+- **Visual Studio 2022**: [Download here](https://visualstudio.microsoft.com)
 
-### Setting Up
+### Setup
 
-1. Clone the repository to your local machine.
-2. Open the solution in Visual Studio 2022.
+1. **Clone**: Clone the repository to your machine.
+2. **Open**: Open the solution in Visual Studio 2022.
+3. **Set Startup Project**: Designate the console application as the startup project.
+4. **Build**: Build the solution to restore and compile.
+
+### Configuration
+
+Configure the output file path in `appsettings.json`:
+
+```json
+{
+  "AppSettings": {
+    "OutputFile": "sorted-names-list.txt"
+  }
+}
+```
 
 ### Running the Application
 
-1. Set the console application as the startup project in Visual Studio.
-2. Build the solution to restore necessary packages and build the projects.
-3. Run the console application from the project directory using the **"Build.Bat"** file from the command prompt and pass the input file path as an argument
-4. 
+- **From Program Directory**:
 
-### Running the Tests
+Navigate to `NameSorter\bin\Debug\net8.0>` and run:
 
-1. Open the Test Explorer in Visual Studio.
-2. Build the solution to discover the tests.
-3. Run all tests to ensure the functionality is working as expected.
+```shell
+namesorter ./input-file-path
+```
+Example:
+```shell
+namesorter ./unsorted-names-list.txt
+```
+
+- **Using Build.Bat**:
+
+In the `NameSorter` directory, execute:
+
+```shell
+build.bat "path-to-your-unsorted-names-list-file"
+```
+Example:
+```shell
+build.bat "C:\Projects\NameSorter\TestDataFiles\unsorted-names-list.txt"
+```
+
+### Testing
+
+- **.NET CLI**:
+
+```shell
+dotnet test
+```
+
+- **Visual Studio**:
+
+Use Test Explorer to run all or selected tests.
+
+## Continuous Integration
+
+CI workflows in `.github/workflows` automate build and test processes on each commit, ensuring code quality and integrity.
