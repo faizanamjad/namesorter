@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Clear NuGet cache
-      run: dotnet nuget locals all --clear
-    
     - name: Restore dependencies
       run: dotnet restore NameSorter/NameSorter.csproj
+
+    - name: Restore test project dependencies
+      run: dotnet restore NameSorter.Tests/NameSorter.Tests.csproj
 
     - name: Build
       run: dotnet build NameSorter/NameSorter.csproj --configuration Release --no-restore
