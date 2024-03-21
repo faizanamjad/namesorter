@@ -1,0 +1,32 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Clear NuGet cache
+      run: dotnet nuget locals all --clear
+    
+    - name: Restore dependencies
+      run: dotnet restore NameSorter/NameSorter.csproj
+
+    - name: Build
+      run: dotnet build NameSorter/NameSorter.csproj --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test NameSorter.Tests/NameSorter.Tests.csproj --no-restore --verbosity normal
