@@ -8,14 +8,14 @@ namespace NameSorter
 {
     public class FileWriter : INameWriter
     {
-        private readonly string _filePath;
+        private readonly string filePath;
 
         public FileWriter(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("Output File path cannot be null or empty.", nameof(filePath));
 
-            _filePath = filePath;
+            this.filePath = filePath;
         }
 
         public void Write(IEnumerable<string> names)
@@ -24,7 +24,7 @@ namespace NameSorter
                 throw new ArgumentNullException(nameof(names), "Names collection cannot be null.");
             try
             {
-                using (StreamWriter writer = new StreamWriter(_filePath))
+                using (StreamWriter writer = new StreamWriter(filePath))
                 {
                     foreach (string name in names)
                     {
@@ -34,7 +34,7 @@ namespace NameSorter
             }
             catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
             {
-                throw new InvalidOperationException($"An error occurred while writing to the file: {_filePath}.", ex);
+                throw new InvalidOperationException($"An error occurred while writing to the file: {filePath}.", ex);
             }
         }
     }

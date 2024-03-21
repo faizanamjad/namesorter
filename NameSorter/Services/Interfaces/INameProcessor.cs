@@ -9,6 +9,6 @@ namespace NameSorter
 {
     public interface INameProcessor
     {
-        List<string> SortNames(IEnumerable<string> names);
+        IEnumerable<string> SortNames(IEnumerable<string> names);
     }
 }

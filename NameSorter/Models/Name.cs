@@ -17,8 +17,8 @@
             var nameParts = fullName.Trim().Split(' ');
             ValidateNameParts(nameParts);
 
-            LastName = nameParts[^1];
-            GivenNames = nameParts[..^1];
+            LastName = nameParts[^1];// last element
+            GivenNames = nameParts[..^1];// all elements except last
         }
 
         public override string ToString() => $"{string.Join(" ", GivenNames)} {LastName}";
@@ -26,7 +26,7 @@
         private void ValidateNameParts(string[] nameParts)
         {
             if (nameParts.Length < 2 || nameParts.Length > 4)
-                throw new ArgumentException($"The provided name '{string.Join(" ", nameParts)}' must consist of 2 to 4 parts, comprising either 1 or 3 given names and 1 last name.");
+                throw new ArgumentException($"Invalid name format: '{string.Join(" ", nameParts)}'. A valid name must have 2 to 4 parts, including 1 to 3 given names followed by a last name.");
         }
     }
 

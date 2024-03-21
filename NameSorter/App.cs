@@ -24,8 +24,8 @@ namespace NameSorter
 
         public void Run(string filePath)
         {
-            var names = reader.ReadFromFile(filePath);
-            var sortedNames = sorter.SortNames(names);
+            var unsortedNames = reader.ReadFromFile(filePath);
+            var sortedNames = sorter.SortNames(unsortedNames);
             writer.Write(sortedNames);
         }
     }

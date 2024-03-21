@@ -57,7 +57,7 @@ namespace NameSorter.Tests
         {
             // Arrange & Act & Assert
             var exception = Assert.Throws<ArgumentException>(() => new Name(fullName));
-            Assert.Contains("must consist of 2 to 4 parts", exception.Message);
+            Assert.Contains("A valid name must have 2 to 4 parts", exception.Message);
         }
 
         [Fact]
